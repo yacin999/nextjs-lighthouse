@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 
 
 import styles from '../styles/Home.module.css';
-import CodeSampleModal from '../components/CodeSampleModal';
 
 export default function Start({ countries }) {
   const [results, setResults] = useState(countries);
@@ -46,7 +46,7 @@ export default function Start({ countries }) {
                 keys: ['name'],
                 threshold: 0.3,
               });
-              
+
               const searchResult = fuse
                 .search(value)
                 .map((result) => result.item);
