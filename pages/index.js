@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 
-import Fuse from 'fuse.js';
-import _ from 'lodash';
 
 import styles from '../styles/Home.module.css';
 import CodeSampleModal from '../components/CodeSampleModal';
@@ -10,10 +9,6 @@ import CodeSampleModal from '../components/CodeSampleModal';
 export default function Start({ countries }) {
   const [results, setResults] = useState(countries);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const fuse = new Fuse(countries, {
-    keys: ['name'],
-    threshold: 0.3,
-  });
 
   return (
     <div>
@@ -33,7 +28,7 @@ export default function Start({ countries }) {
         </h1>
 
         <div className={styles.heroImage}>
-          <img src="large-image.jpg" alt="Large Image" />
+        <Image src="/large-image.jpg" alt="Large Image" width={3048} height={2024} />
         </div>
 
         <div>
@@ -65,7 +60,7 @@ export default function Start({ countries }) {
             {results.map((country) => (
               <li key={country.cca2} className={styles.country}>
                 <p>
-                  {country.name} - {country.population.toLocaleString()}
+                  {country.name} - {country.population}
                 </p>
               </li>
             ))}
@@ -91,7 +86,7 @@ export default function Start({ countries }) {
         >
           Powered by
           <span className={styles.logo}>
-            <img src="/vercel.svg" alt="Vercel Logo" />
+            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
